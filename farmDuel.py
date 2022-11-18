@@ -42,7 +42,7 @@ def duel():
     pyautogui.sleep(.5)
     while (confirm := pyautogui.locateOnScreen('confirm.png', confidence=0.7, grayscale=True)) == None:
         pyautogui.sleep(.5)
-        if (attack := pyautogui.locateAllOnScreen('attack.png', confidence=0.6, grayscale=True)) != None or (attack := pyautogui.locateAllOnScreen('reverse_attack.png', confidence=0.6, grayscale=True)) != None or (attack := pyautogui.locateAllOnScreen('small_attack.png', confidence=0.6, grayscale=True)) != None:
+        if (attack := pyautogui.locateAllOnScreen('attack.png', confidence=0.6, grayscale=True)) != None or (attack := pyautogui.locateAllOnScreen('reverse_attack.png', confidence=0.6, grayscale=True)) != None:
             chosen_attack = None
             for i, attack_option in enumerate(attack):
                 pass
@@ -56,6 +56,10 @@ def duel():
                 
 
         else:
+            if (attack := pyautogui.locateAllOnScreen('small_attack.png', confidence=0.6, grayscale=True)) != None:
+                print("attack " + str(chosen_attack))
+                click(chosen_attack_box)
+                autoit.mouse_move(200,200,1)
             if (attack := pyautogui.locateAllOnScreen('low_res_attack.png', confidence=0.6, grayscale=True)) != None or (attack := pyautogui.locateAllOnScreen('reverse_low_res_attack.png', confidence=0.6, grayscale=True)) != None:
                 chosen_attack = None
                 for i, attack_option in enumerate(attack):
