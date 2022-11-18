@@ -9,6 +9,12 @@ class Box:
         self.width=width 
         self.height=height 
         
+def tournamentDuel():
+    while (confirm := pyautogui.locateOnScreen('confirm.png', confidence=0.7, grayscale=True)) == None:
+        pyautogui.sleep(.5)
+        
+    click(confirm)  
+    pyautogui.sleep(1)
 
 def click(box):
     autoit.mouse_click("left", math.floor(box.left + box.width/2), math.floor(box.top + box.height/2), 3, 1) 
@@ -71,6 +77,10 @@ def duel():
                     print("low_res " + str(attack))
                     click(chosen_attack)  
                     autoit.mouse_move(200,200,1)
+            else:
+                if (fireball_attack := pyautogui.locateAllOnScreen('fireball_attack.png', confidence=0.6, grayscale=True)) != None:
+                    click(fireball_attack)  
+
 #
         pyautogui.sleep(.75)
     pyautogui.sleep(.5)
@@ -88,4 +98,4 @@ def duel():
     #    autoit.mouse_move(math.floor(agility.left + agility.width), math.floor(agility.top + agility.height))
     #    autoit.mouse_click("left", agility.left + agility.width/2, agility.top + agility.height/2, 3, .5) 
 while True:
-    duel()
+    tournamentDuel()
